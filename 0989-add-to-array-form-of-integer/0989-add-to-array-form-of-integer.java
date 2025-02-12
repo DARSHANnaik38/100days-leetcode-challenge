@@ -1,34 +1,29 @@
-import java.util.ArrayList;
-import java.util.List;
-
 class Solution {
     public List<Integer> addToArrayForm(int[] num, int k) {
-        String result = "";
-        
-        // Convert array to a single number in string format
-        for (int i : num) {
-            result += i;
-        }
+       List<Integer> ans = new ArrayList<>();
 
-        // Convert string to integer and add k
-        int newResult = Integer.parseInt(result);
-        int finalResult = newResult + k;
+       int p = num.length-1 ;
+       int carry = 0 ;
 
-        // Convert finalResult back to string
-        String numStr = Integer.toString(finalResult);
-        int[] numArray = new int[numStr.length()];
+       while(p>=0 || k>0){
+           int numval = 0;
+           if(p>=0){
+               numval = num[p];
+           }
+           int d = k%10; // it is the last digit from k
+           int sum = numval + d + carry;
+           int digit = sum%10;
+           carry = sum/10;
+           ans.add(digit);
+           p--;       // moving the pointer
+           k = k/10 ; // removing the last digit from k
+       }
 
-        // Convert string back to int array
-        for (int i = 0; i < numStr.length(); i++) {
-            numArray[i] = numStr.charAt(i) - '0';
-        }
+       if(carry>0){
+           ans.add(carry); // adding carry to the array list
+       }
 
-        // Convert int[] to List<Integer>
-        List<Integer> resultList = new ArrayList<>();
-        for (int digit : numArray) {
-            resultList.add(digit);
-        }
-
-        return resultList;
-    }
+       Collections.reverse(ans);  // reversing the ans array list
+       return ans ;
+     }
 }
