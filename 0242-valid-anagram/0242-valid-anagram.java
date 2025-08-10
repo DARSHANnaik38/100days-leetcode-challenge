@@ -1,15 +1,24 @@
 class Solution {
     public boolean isAnagram(String s, String t) {
         if(s.length() != t.length())
-        return false;
-        char[] sarr = s.toCharArray();
-        char[] tarr = t.toCharArray();
+        {
+            return false;
+        }
 
-        Arrays.sort(sarr);
-        Arrays.sort(tarr);
+        String s1 = s.chars()
+                    .sorted()
+                    .mapToObj(c -> (char)c)
+                    .map(String::valueOf)
+                    .collect(Collectors.joining());
 
+        String s2 = t.chars()
+                    .sorted()
+                    .mapToObj(c -> (char)c)
+                    .map(String::valueOf)
+                    .collect(Collectors.joining());
+
+
+                    return s1.equals(s2);
         
-        return Arrays.equals(sarr, tarr);
-
     }
 }
