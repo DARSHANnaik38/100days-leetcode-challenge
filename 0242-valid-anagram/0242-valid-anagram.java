@@ -3,12 +3,24 @@ class Solution {
         if(s.length() != t.length()) {
             return false;
         }
-        char[] arr1 = s.toCharArray();
-        char[] arr2 = t.toCharArray();
 
-        Arrays.sort(arr1);
-        Arrays.sort(arr2);
+        Map<Character , Integer> freq = new HashMap<>();
+        for(char ch : s.toCharArray()) {
+            freq.put(ch , freq.getOrDefault(ch , 0) + 1);
 
-        return Arrays.equals(arr1 , arr2);
+        }
+        
+        for(char ch : t.toCharArray()) {
+            if(!freq.containsKey(ch)) {
+                return false;
+            }
+
+            freq.put(ch , freq.get(ch) - 1);
+
+            if(freq.get(ch) < 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }
