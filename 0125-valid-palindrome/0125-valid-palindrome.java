@@ -1,34 +1,30 @@
-import java.util.Stack;
-
 class Solution {
     public boolean isPalindrome(String s) {
-        // Use StringBuilder without the generic type <Character>
-        StringBuilder cleanedstring = new StringBuilder();
+        int left = 0;
+        int right = s.length() - 1;
 
-        for(char c : s.toCharArray()) {
-            // Correct method name is isLetterOrDigit
-            if(Character.isLetterOrDigit(c)) {
-                // Use Character.toLowerCase() for a char
-                cleanedstring.append(Character.toLowerCase(c));
+        // s = s.toLowerCase();
+        while(left < right) {
+            // if(s.charAt(left) != s.charAt(right)) {
+            //     return false;
+            // }
+            if(!Character.isLetterOrDigit(s.charAt(left))) {
+                left++;
+                continue;
             }
-        }
-
-        Stack<Character> checkingstack = new Stack<>();
-        String finalstring = cleanedstring.toString();
-        // String length is a method: length()
-        int length = finalstring.length();
-        int mid = length / 2;
-
-        for(int i = 0 ; i < mid ; i++) {
-            checkingstack.push(finalstring.charAt(i));
-        }
-
-        int secondhalf = (length % 2 == 0) ? mid : mid + 1;
-        for(int j = secondhalf ; j < length ; j++) {
-            // Typo fix: use checkingstack, not charstack
-            if(checkingstack.isEmpty() || checkingstack.pop() != finalstring.charAt(j)) {
+            else if(!Character.isLetterOrDigit(s.charAt(right))) {
+                right--;
+                continue;
+            }
+            if(Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))) {
                 return false;
             }
+            left++;
+            right--;
+
+
+
+
         }
         return true;
     }
