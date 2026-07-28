@@ -23,4 +23,8 @@
 |  |
 | ------- |
 | [0020-valid-parentheses](https://github.com/DARSHANnaik38/100days-leetcode-challenge/tree/master/0020-valid-parentheses) |
+## Math
+|  |
+| ------- |
+| [0009-palindrome-number](https://github.com/DARSHANnaik38/100days-leetcode-challenge/tree/master/0009-palindrome-number) |
 <!---LeetCode Topics End-->
